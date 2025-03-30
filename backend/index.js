@@ -4,6 +4,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
 
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
@@ -13,7 +15,12 @@ const { OrdersModel } = require("./model/OrdersModel");
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 const app = express();
-app.use(cors());
+app.use(
+  cors()
+);
+app.use(cookieParser());
+app.use(express.json());
+
 app.use(bodyParser.json());
 
 

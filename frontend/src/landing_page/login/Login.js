@@ -5,10 +5,12 @@ import axios from "axios";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // State for error message
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous error
 
     try {
       const response = await axios.post(
@@ -18,42 +20,50 @@ const Login = () => {
       );
 
       if (response.data.success) {
-        window.location.href = "http://localhost:3001/";  // Redirect to Home/Dashboard
+        window.location.href = "http://localhost:3001/"; // Redirect to Home/Dashboard
+      } else {
+        setError("Invalid credentials. Please try again.");
       }
     } catch (error) {
-      console.error("Login failed", error);
+      setError("Invalid credentials. Please try again.");
     }
   };
 
   return (
-    <form onSubmit={handleLogin} className="container mt-5 p-4 border rounded shadow-sm bg-light" style={{ maxWidth: "400px" }}>
-  <h3 className="text-center mb-4">Login</h3>
-  
-  <div className="mb-3">
-    <label className="form-label">Username</label>
-    <input 
-      type="text" 
-      className="form-control" 
-      placeholder="Enter username" 
-      onChange={(e) => setUsername(e.target.value)} 
-    />
-  </div>
+    <form
+      onSubmit={handleLogin}
+      className="container mt-5 p-4 border rounded shadow-sm bg-light"
+      style={{ maxWidth: "400px" }}
+    >
+      <h3 className="text-center mb-4">Login</h3>
 
-  <div className="mb-3">
-    <label className="form-label">Password</label>
-    <input 
-      type="password" 
-      className="form-control" 
-      placeholder="Enter password" 
-      onChange={(e) => setPassword(e.target.value)} 
-    />
-  </div>
+      {error && <div className="alert alert-danger">{error}</div>} {/* Error Message */}
 
-  <button type="submit" className="btn btn-primary w-100">Login</button>
-</form>
+      <div className="mb-3">
+        <label className="form-label">Username</label>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Enter username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
 
+      <div className="mb-3">
+        <label className="form-label">Password</label>
+        <input
+          type="password"
+          className="form-control"
+          placeholder="Enter password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+
+      <button type="submit" className="btn btn-primary w-100">
+        Login
+      </button>
+    </form>
   );
 };
 
 export default Login;
-

@@ -1,12 +1,57 @@
-import React from 'react'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function SignUp() {
+
+const Signup = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3002/signup", { username, password });
+      navigate("/login"); // Redirect to login page after signup
+    } catch (error) {
+      console.error("Signup failed", error);
+    }
+  };  
+
   return (
-    <div>
-        <h1>SignUp</h1>
-      
-    </div>
-  )
-}
+    <>
 
-export default SignUp
+<form onSubmit={handleSignup} className="container mt-5 p-4 border rounded shadow-sm bg-light" style={{ maxWidth: "400px" }}>
+  <h3 className="text-center mb-4">Sign Up</h3>
+
+  <div className="mb-3">
+    <label className="form-label">Username</label>
+    <input 
+      type="text" 
+      className="form-control" 
+      placeholder="Enter username" 
+      onChange={(e) => setUsername(e.target.value)} 
+    />
+  </div>
+
+  <div className="mb-3">
+    <label className="form-label">Password</label>
+    <input 
+      type="password" 
+      className="form-control" 
+      placeholder="Enter password" 
+      onChange={(e) => setPassword(e.target.value)} 
+    />
+  </div>
+
+  <button type="submit" className="btn btn-success w-100">Sign Up</button>
+</form>
+
+
+    
+    </>
+    
+  );
+};
+
+export default Signup;

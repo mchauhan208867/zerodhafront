@@ -92,8 +92,8 @@ app.post("/login", async (req, res) => {
     // Set HTTP-only cookie
     res.cookie("token", token, {
       httpOnly: true, // Secure against XSS
-      secure: false, // Set to `true` in production with HTTPS
-      sameSite: "Strict",
+      secure: true, // Set to `true` in production with HTTPS
+      sameSite: "None",
       maxAge: 60 * 60 * 1000, // 1 hour
     });
 

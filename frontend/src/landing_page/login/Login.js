@@ -14,13 +14,13 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3002/login",
+        "https://zerodhafront-lbsc.onrender.com/login",
         { username, password },
         { withCredentials: true } // Ensure cookies are sent & received
       );
 
       if (response.data.success) {
-        window.location.href = "http://localhost:3001/"; // Redirect to Home/Dashboard
+        window.location.href = "https://zerodhafront-n5vn.vercel.app/"; // Redirect to Home/Dashboard
       } else {
         setError("Invalid credentials. Please try again.");
       }

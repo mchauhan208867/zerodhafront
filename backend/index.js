@@ -20,7 +20,7 @@ const app = express();
 // Allow frontend to send cookies
 app.use(
   cors({
-    origin: ["https://zerodhafront-eight.vercel.app/", "https://zerodhafront-n5vn.vercel.app/"], // Adjust based on your frontend URLs
+    origin: [*], // Adjust based on your frontend URLs
     credentials: true, // Allow cookies
   })
 );

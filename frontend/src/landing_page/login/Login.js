@@ -14,7 +14,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "https://zerodhafront-lbsc.onrender.com/login",
+        "https://zerodhafront-1.onrender.com/login",
         { username, password },
         { withCredentials: true } // Ensure cookies are sent & received
       );

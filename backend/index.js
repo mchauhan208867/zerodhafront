@@ -18,10 +18,21 @@ const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
 const app = express();
 
 // Allow frontend to send cookies
+const allowedOrigins = [
+  "https://zerodhafront-eight.vercel.app",
+  "https://zerodhafront-n5vn.vercel.app"
+];
+
 app.use(
   cors({
-    origin: true, // Allows any origin dynamically
-    credentials: true, // Allows cookies and authentication headers
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Allow cookies & authentication headers
   })
 );
 app.use(cookieParser());

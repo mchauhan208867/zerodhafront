@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("https://zerodhafront-lbsc.onrender.com/auth", {
+        const response = await axios.get("https://zerodhafront-1.onrender.com/auth", {
           withCredentials: true, // Send cookies with request
         });
 

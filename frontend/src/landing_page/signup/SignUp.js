@@ -11,7 +11,7 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3002/signup", { username, password });
+      await axios.post("https://zerodhafront-lbsc.onrender.com/signup", { username, password });
       setSuccessMessage("Signup successful! Kindly login."); // Show success message
       setTimeout(() => navigate("/login"), 2000); // Redirect after 2 seconds
     } catch (error) {

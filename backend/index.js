@@ -142,7 +142,7 @@ app.post("/newOrder", async (req, res) => {
 
 // **Start Server**
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+ console.log(`Server running on port ${PORT}`);
   mongoose.connect(uri)
     .then(() => console.log("DB Connected"))
     .catch(err => console.error("DB Connection Failed", err));

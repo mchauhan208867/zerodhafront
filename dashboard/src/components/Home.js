@@ -11,18 +11,18 @@ const Home = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:3002/auth", {
+        const response = await axios.get("https://zerodhafront-lbsc.onrender.com/auth", {
           withCredentials: true, // Send cookies with request
         });
 
         if (response.data.authenticated) {
           setUser(response.data.user);
         } else {
-          window.location.href = "http://localhost:3000/login"; // Redirect if not authenticated
+          window.location.href = "https://zerodhafront-eight.vercel.app/login"; // Redirect if not authenticated
         }
       } catch (error) {
         console.error("Authentication check failed:", error);
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = "https://zerodhafront-eight.vercel.app/login";
       }
     };
 

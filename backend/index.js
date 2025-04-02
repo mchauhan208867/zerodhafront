@@ -36,6 +36,12 @@ const userSchema = new mongoose.Schema({
 
 const UserModel = mongoose.model("User", userSchema);
 
+// Simple Root API
+app.get("/", (req, res) => {
+  res.status(200).send("✅ Web Server is Running!");
+});
+
+
 app.post("/signup", async (req, res) => {
   try {
     const { username, password } = req.body;

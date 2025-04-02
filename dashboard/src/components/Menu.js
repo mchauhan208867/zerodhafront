@@ -16,8 +16,8 @@ const Menu = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:3002/logout", {}, { withCredentials: true });
-      window.location.href = "http://localhost:3000/"; // Redirect to login page
+      await axios.post("https://zerodhafront-1.onrender.com/logout", {}, { withCredentials: true });
+      window.location.href = "https://zerodhafront-eight.vercel.app/"; // Redirect to login page
     } catch (error) {
       console.error("Logout failed", error);
     }

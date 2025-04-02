@@ -20,7 +20,7 @@ const app = express();
 // Allow frontend to send cookies
 app.use(
   cors({
-    origin: [*], // Adjust based on your frontend URLs
+    origin: *, // Adjust based on your frontend URLs
     credentials: true, // Allow cookies
   })
 );

@@ -12,7 +12,7 @@ const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 10000;
 const uri = process.env.MONGO_URL;
 const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
 const app = express();

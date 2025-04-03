@@ -97,7 +97,7 @@ app.post("/login", async (req, res) => {
       maxAge: 60 * 60 * 1000, // 1 hour
     });
 
-    res.json({ success: true });
+    res.json({ success: true , name: user.name });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }

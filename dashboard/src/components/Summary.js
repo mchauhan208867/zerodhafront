@@ -1,8 +1,40 @@
 import React from "react";
+import React, { useState, useEffect } from "react";
+const fetchUserName = async () => {
+  try {
+    const response = await fetch("https://zerodhafront-1.onrender.com/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ /* any credentials or data */ }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.name; // assuming the response contains 'name' key
+    } else {
+      throw new Error("Failed to fetch user info");
+    }
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+    return "User"; // fallback if the API fails
+  }
+};
 
 
 
 const Summary = () => {
+ const [userName, setUserName] = useState("User"); // default "User"
+  
+  useEffect(() => {
+    const getUserName = async () => {
+      const name = await fetchUserName();
+      setUserName(name); // update state with the fetched name
+    };
+    
+    getUserName();
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
 
 
   return (

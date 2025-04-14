@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,8 +18,9 @@ const Login = () => {
       );
 
       if (response.data.success) {
-        localStorage.setItem("username", username); // Save username
-        window.location.href = "https://zerodhafront-n5vn.vercel.app/"; // Redirect
+        // Instead of saving in localStorage, redirect with query param
+        const encodedUsername = encodeURIComponent(username);
+        window.location.href = `https://zerodhafront-n5vn.vercel.app/?username=${encodedUsername}`;
       } else {
         setError("Invalid credentials. Please try again.");
       }

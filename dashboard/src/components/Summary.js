@@ -4,9 +4,18 @@ const Summary = () => {
   const [userName, setUserName] = useState("User");
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    if (storedUsername) {
-      setUserName(storedUsername);
+    // Get the username from URL query parameter
+    const params = new URLSearchParams(window.location.search);
+    const queryUsername = params.get("username");
+
+    if (queryUsername) {
+      setUserName(queryUsername);
+      localStorage.setItem("username", queryUsername); // Optional: store for later
+    } else {
+      const storedUsername = localStorage.getItem("username");
+      if (storedUsername) {
+        setUserName(storedUsername);
+      }
     }
   }, []);
 

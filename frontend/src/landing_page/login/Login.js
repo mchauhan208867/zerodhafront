@@ -5,27 +5,23 @@ import axios from "axios";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // State for error message
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous error
+    setError("");
 
     try {
       const response = await axios.post(
         "https://zerodhafront-1.onrender.com/login",
         { username, password },
-        { withCredentials: true } // Ensure cookies are sent & received
+        { withCredentials: true }
       );
 
       if (response.data.success) {
-        if (response.data.success) {
-     localStorage.setItem("username", username); // Save username to localStorage
-      window.location.href = "https://zerodhafront-n5vn.vercel.app/";
-}
-
-        window.location.href = "https://zerodhafront-n5vn.vercel.app/"; // Redirect to Home/Dashboard
+        localStorage.setItem("username", username); // Save username
+        window.location.href = "https://zerodhafront-n5vn.vercel.app/"; // Redirect
       } else {
         setError("Invalid credentials. Please try again.");
       }
@@ -42,7 +38,7 @@ const Login = () => {
     >
       <h3 className="text-center mb-4">Login</h3>
 
-      {error && <div className="alert alert-danger">{error}</div>} {/* Error Message */}
+      {error && <div className="alert alert-danger">{error}</div>}
 
       <div className="mb-3">
         <label className="form-label">Username</label>

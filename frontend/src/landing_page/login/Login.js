@@ -20,6 +20,11 @@ const Login = () => {
       );
 
       if (response.data.success) {
+        if (response.data.success) {
+     localStorage.setItem("username", username); // Save username to localStorage
+      window.location.href = "https://zerodhafront-n5vn.vercel.app/";
+}
+
         window.location.href = "https://zerodhafront-n5vn.vercel.app/"; // Redirect to Home/Dashboard
       } else {
         setError("Invalid credentials. Please try again.");
